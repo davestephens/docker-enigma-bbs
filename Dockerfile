@@ -29,10 +29,22 @@ RUN . ~/.nvm/nvm.sh && nvm install 6 && nvm alias default 6 && npm install -g pm
 # clone enig!
 RUN git clone https://github.com/NuSkooler/enigma-bbs.git --branch 0.0.8-alpha
 
+# user enigma customisations
+VOLUME /mods
+VOLUME /misc
+VOLUME /art
+
+# enigma storage mounts
+VOLUME /enigma-bbs/config
+VOLUME /enigma-bbs/db
+VOLUME /enigma-bbs/logs
+VOLUME /enigma-bbs/mail
+
 # copy config
-COPY config/* /enigma-bbs/config
-# backup in case user mounts empty config volume
-COPY config/* /enigma-bbs/misc
+COPY config/* /enigma-bbs/misc/
+
+# copy launcher
+COPY scripts/* /
 
 WORKDIR /enigma-bbs
 
@@ -42,12 +54,5 @@ RUN . ~/.nvm/nvm.sh && npm install
 # Enigma default port
 EXPOSE 8888
 
-# storage
-VOLUME /enigma-bbs/config
-VOLUME /enigma-bbs/db
-VOLUME /enigma-bbs/logs
-VOLUME /enigma-bbs/mail
-
 # Set the default command
-ENTRYPOINT . ~/.nvm/nvm.sh && if [ ! -f /enigma-bbs/config/enigma.hjson ]; cp /enigma-bbs/misc/enigma.hjson /enigma-bbs/config/enigma.hjson fi && /enigma-bbs/main.js --config /enigma-bbs/config/enigma.hjson
-
+ENTRYPOINT /start.sh
