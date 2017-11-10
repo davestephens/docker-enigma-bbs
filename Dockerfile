@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
 # install nvm and set node 6
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 
-#needed by nvm install
+# needed by nvm install
 ENV NVM_DIR /root/.nvm
 
 # install the specified node version and set it as the default one, install pm2
@@ -39,8 +39,9 @@ VOLUME /enigma-bbs/config
 VOLUME /enigma-bbs/db
 VOLUME /enigma-bbs/logs
 VOLUME /enigma-bbs/mail
+VOLUME /enigma-bbs/filebase
 
-# copy config
+# copy base config
 COPY config/* /enigma-bbs/misc/
 
 # copy launcher
