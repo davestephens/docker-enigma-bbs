@@ -44,14 +44,14 @@ Example container startup command:
 ````bash
 docker run -d \
     -p 8888:8888 \
-    -v ~/enigma-bbs/config:/enigma-bbs/config
-    -v ~/enigma-bbs/db:/enigma-bbs/db
-    -v ~/enigma-bbs/logs:/enigma-bbs/logs
-    -v ~/enigma-bbs/mail:/enigma-bbs/mail
-    -v ~/enigma-bbs/filebase:/enigma-bbs/filebase
-    -v ~/enigma-bbs/art:/art
-    -v ~/enigma-bbs/mods:/mods
-    -v ~/enigma-bbs/misc:/misc
+    -v ~/enigma-bbs/config:/enigma-bbs/config \
+    -v ~/enigma-bbs/db:/enigma-bbs/db \
+    -v ~/enigma-bbs/logs:/enigma-bbs/logs \
+    -v ~/enigma-bbs/mail:/enigma-bbs/mail \
+    -v ~/enigma-bbs/filebase:/enigma-bbs/filebase \
+    -v ~/enigma-bbs/art:/art \
+    -v ~/enigma-bbs/mods:/mods \
+    -v ~/enigma-bbs/misc:/misc \
     davestephens\enigma-bbs
 ````
 
