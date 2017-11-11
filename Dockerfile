@@ -33,9 +33,9 @@ RUN git clone https://github.com/NuSkooler/enigma-bbs.git --branch 0.0.8-alpha
 VOLUME /mods
 VOLUME /misc
 VOLUME /art
+VOLUME /config
 
 # enigma storage mounts
-VOLUME /enigma-bbs/config
 VOLUME /enigma-bbs/db
 VOLUME /enigma-bbs/logs
 VOLUME /enigma-bbs/mail
@@ -56,4 +56,5 @@ RUN . ~/.nvm/nvm.sh && npm install
 EXPOSE 8888
 
 # Set the default command
-ENTRYPOINT /start.sh
+ENTRYPOINT ["/bin/bash", "-c", "/init.sh && . ~/.nvm/nvm.sh && exec pm2-docker /enigma-bbs/main.js"]
+
