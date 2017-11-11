@@ -14,7 +14,6 @@ copy_customisations() {
 
 echo "Copying in user customisations"
 copy_customisations mods
-copy_customisations art
 copy_customisations misc
 
 echo "Creating config directory"

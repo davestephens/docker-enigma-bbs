@@ -32,7 +32,6 @@ RUN git clone https://github.com/NuSkooler/enigma-bbs.git --branch 0.0.8-alpha
 # user enigma customisations
 VOLUME /mods
 VOLUME /misc
-VOLUME /art
 VOLUME /config
 
 # enigma storage mounts
