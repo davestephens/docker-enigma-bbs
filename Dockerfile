@@ -1,5 +1,4 @@
-# Node 6 base image
-FROM ubuntu:16.04
+FROM ubuntu:artful
 
 MAINTAINER Dave Stephens <dave@force9.org>
 
