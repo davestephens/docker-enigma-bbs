@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 copy_customisations() {
   directory=$1
@@ -28,3 +28,5 @@ else
   cp /enigma-bbs/misc/config.hjson /root/.config/enigma-bbs/config.hjson
 fi
 
+echo "Installing node modules"
+cd /enigma-bbs && . ~/.nvm/nvm.sh && npm install

@@ -49,7 +49,7 @@ COPY scripts/* /
 WORKDIR /enigma-bbs
 
 # install enig packages
-RUN . ~/.nvm/nvm.sh && npm install
+RUN . ~/.nvm/nvm.sh && npm install && rm -rf node_modules/farmhash
 
 # Enigma default port
 EXPOSE 8888
