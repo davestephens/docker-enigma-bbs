@@ -7,7 +7,7 @@ RUN apk add --no-cache make gcc g++ python git unrar p7zip curl
 
 # binary packages
 # sexyz
-ADD https://l33t.codes/outgoing/sexyz /usr/local/bin/
+ADD https://l33t.codes/outgoing/sexyz /usr/local/bin/ && chmod +x sexyz
 RUN chmod +x /usr/local/bin
 
 # source packages
