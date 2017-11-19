@@ -1,32 +1,41 @@
-FROM ubuntu:artful
+FROM mhart/alpine-node:6
 
 MAINTAINER Dave Stephens <dave@force9.org>
 
-# Install some packages
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    build-essential \
-    python \
-    libssl-dev \
-    lrzsz \
-    arj \
-    lhasa \
-    unrar-free \
-    p7zip-full \
-  && rm -rf /var/lib/apt/lists/*
+# dependencies
+RUN apk add --no-cache make gcc g++ python git unrar p7zip curl
 
-# install nvm and set node 6
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+# binary packages
+# sexyz
+ADD https://l33t.codes/outgoing/sexyz /usr/local/bin/
+RUN chmod +x /usr/local/bin
 
-# needed by nvm install
-ENV NVM_DIR /root/.nvm
+# source packages
+# lhasa
+RUN curl -O https://soulsphere.org/projects/lhasa/lhasa-0.3.1.tar.gz \
+    && tar xvf lhasa-0.3.1.tar.gz \
+    && cd lhasa-0.3.1 \
+    && ./configure \
+    && make \
+    && make install \
+    && cd .. \
+    && rm -rf lhasa*
 
-# install the specified node version and set it as the default one, install pm2
-RUN . ~/.nvm/nvm.sh && nvm install 6 && nvm alias default 6 && npm install -g pm2
+# lrzsz
+RUN curl -O https://ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz \
+    && tar xvf lrzsz-0.12.20.tar.gz \
+    && cd lrzsz-0.12.20 \
+    && ./configure \
+    && make \
+    && make install \
+    && cd .. \
+    && rm -rf lrzsz*
 
 # clone enig!
 RUN git clone https://github.com/NuSkooler/enigma-bbs.git --branch 0.0.8-alpha
+
+WORKDIR /enigma-bbs
+
 
 # user enigma customisations
 VOLUME /mods
@@ -45,14 +54,11 @@ COPY config/* /enigma-bbs/misc/
 # copy launcher
 COPY scripts/* /
 
-WORKDIR /enigma-bbs
-
-# install enig packages
-RUN . ~/.nvm/nvm.sh && npm install && rm -rf node_modules/farmhash
+RUN npm install --production && npm install -g pm2 && rm -rf node_modules/farmhash
 
 # Enigma default port
 EXPOSE 8888
 
 # Set the default command
-ENTRYPOINT ["/bin/bash", "-c", "/init.sh && . ~/.nvm/nvm.sh && exec pm2-docker /enigma-bbs/main.js"]
+ENTRYPOINT ["/bin/sh", "-c", "/init.sh && exec pm2-docker /enigma-bbs/main.js"]
 

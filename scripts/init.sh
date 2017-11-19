@@ -29,4 +29,4 @@ else
 fi
 
 echo "Installing node modules"
-cd /enigma-bbs && . ~/.nvm/nvm.sh && npm install
+cd /enigma-bbs && npm install
