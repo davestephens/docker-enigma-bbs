@@ -7,8 +7,8 @@ RUN apk add --no-cache make gcc g++ python git unrar p7zip curl
 
 # binary packages
 # sexyz
-ADD https://l33t.codes/outgoing/sexyz /usr/local/bin/ && chmod +x sexyz
-RUN chmod +x /usr/local/bin
+# ADD https://l33t.codes/outgoing/sexyz /usr/local/bin/ && chmod +x sexyz
+# RUN chmod +x /usr/local/bin
 
 # source packages
 # lhasa
@@ -36,17 +36,14 @@ RUN git clone https://github.com/NuSkooler/enigma-bbs.git --branch 0.0.8-alpha
 
 WORKDIR /enigma-bbs
 
-
-# user enigma customisations
-VOLUME /mods
-VOLUME /misc
-VOLUME /config
-
 # enigma storage mounts
+VOLUME /enigma-bbs/art
+VOLUME /enigma-bbs/config
 VOLUME /enigma-bbs/db
 VOLUME /enigma-bbs/logs
-VOLUME /enigma-bbs/mail
+VOLUME /enigma-bbs/mods
 VOLUME /enigma-bbs/filebase
+VOLUME /mail
 
 # copy base config
 COPY config/* /enigma-bbs/misc/
@@ -54,7 +51,7 @@ COPY config/* /enigma-bbs/misc/
 # copy launcher
 COPY scripts/* /
 
-RUN npm install --production && npm install -g pm2 && rm -rf node_modules/farmhash
+RUN npm install --production && npm install -g pm2
 
 # Enigma default port
 EXPOSE 8888

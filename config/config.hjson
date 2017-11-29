@@ -1,6 +1,6 @@
 {
   general: {
-    boardName: "New ENiGMA½ BBS"
+    boardName: "New Dockerised ENiGMA½ BBS"
   }
   messageConferences: {
     local: {
