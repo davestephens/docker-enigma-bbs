@@ -36,15 +36,6 @@ RUN git clone https://github.com/NuSkooler/enigma-bbs.git --branch 0.0.8-alpha
 
 WORKDIR /enigma-bbs
 
-# enigma storage mounts
-VOLUME /enigma-bbs/art
-VOLUME /enigma-bbs/config
-VOLUME /enigma-bbs/db
-VOLUME /enigma-bbs/logs
-VOLUME /enigma-bbs/mods
-VOLUME /enigma-bbs/filebase
-VOLUME /mail
-
 # copy base config
 COPY config/* /enigma-bbs/misc/
 
@@ -52,6 +43,15 @@ COPY config/* /enigma-bbs/misc/
 COPY scripts/* /
 
 RUN npm install --production && npm install -g pm2
+
+# enigma volumes
+VOLUME /enigma-bbs/art
+VOLUME /enigma-bbs/config
+VOLUME /enigma-bbs/db
+VOLUME /enigma-bbs/logs
+VOLUME /enigma-bbs/mods
+VOLUME /enigma-bbs/filebase
+VOLUME /mail
 
 # Enigma default port
 EXPOSE 8888
