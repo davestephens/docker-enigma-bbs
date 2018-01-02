@@ -1,18 +1,11 @@
-FROM phusion/baseimage:0.9.22
+FROM ubuntu:16.04
 
 MAINTAINER Dave Stephens <dave@force9.org>
 
-# set up home directories
+# set up home directory for nvm
 ENV NVM_DIR /root/.nvm
-RUN echo /root > /etc/container_environment/HOME
 
-# Do some stuff!
-## apt packages
-## download and install nvm
-## install node 6 and set to default
-## clone enig
-## install node packages
-## package and tmp cleanup
+# Do some installing!
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -48,20 +41,13 @@ VOLUME /mail
 # copy base config
 COPY config/* /enigma-bbs/misc/
 
-# set up runit launcher
-RUN mkdir /etc/service/enigma-bbs
-COPY scripts/enigma-bbs.sh /etc/service/enigma-bbs/run
-RUN chmod +x /etc/service/enigma-bbs/run
-
-# set up init script
-RUN mkdir -p /etc/my_init.d
-COPY scripts/10_enigma_config.sh /etc/my_init.d/10_enigma_config.sh
-RUN chmod +x /etc/my_init.d/10_enigma_config.sh
+# set up config init script
+COPY scripts/enigma_config.sh /enigma-bbs/misc/enigma_config.sh
+RUN chmod +x /enigma-bbs/misc/enigma_config.sh
 
 # Enigma default port
 EXPOSE 8888
 
 WORKDIR /enigma-bbs
 
-# Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
+ENTRYPOINT ["/bin/bash", "-c", "cd /enigma-bbs && ./misc/enigma_config.sh && source ~/.nvm/nvm.sh && exec pm2-docker ./main.js"]
