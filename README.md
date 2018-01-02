@@ -64,7 +64,7 @@ for the mountable volumes - art, config, db, filebase, logs, mail and mods.
         davestephens\enigma-bbs
     ````
 
-### Volumes
+## Volumes
 
 The following volumes are mountable:
 
@@ -77,6 +77,11 @@ The following volumes are mountable:
 | /enigma-bbs/logs        | Logs                                                                 |
 | /enigma-bbs/mods        | ENiGMA mods                                                          |
 | /mail                   | FTN mail (for use with an external mailer)                           |
+
+## TODO
+
+* Any more space optimisations?
+* Install packages for mods on container init
 
 ## License 
 

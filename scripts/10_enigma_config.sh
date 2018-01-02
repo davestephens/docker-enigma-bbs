@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "Checking for an ENiGMA config file"
 if [ -f "/enigma-bbs/config/config.hjson" ]; then
