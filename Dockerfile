@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
     lhasa \
     unrar-free \
     p7zip-full \
-  && curl -O https://raw.githubusercontent.com/creationix/nvm/master/install.sh \
+  && curl -O https://raw.githubusercontent.com/creationix/nvm/v0.33.7/install.sh \
   && chmod +x ./install.sh && ./install.sh && rm install.sh \
   && . ~/.nvm/nvm.sh && nvm install 6 && nvm alias default 6 && npm install -g pm2 \
   && git clone https://github.com/NuSkooler/enigma-bbs.git --depth 1 --branch 0.0.8-alpha \
