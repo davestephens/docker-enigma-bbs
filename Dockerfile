@@ -2,8 +2,10 @@ FROM ubuntu:16.04
 
 MAINTAINER Dave Stephens <dave@force9.org>
 
-# set up home directory for nvm
 ENV NVM_DIR /root/.nvm
+ENV NVM_VERSION v0.33.7
+ENV NODE_VERSION 8
+ENV ENIGMA_BRANCH 0.0.9-alpha
 
 # Do some installing!
 RUN apt-get update && apt-get install -y \
@@ -17,10 +19,10 @@ RUN apt-get update && apt-get install -y \
     lhasa \
     unrar-free \
     p7zip-full \
-  && curl -O https://raw.githubusercontent.com/creationix/nvm/v0.33.7/install.sh \
+  && curl -O https://raw.githubusercontent.com/creationix/nvm/$NVM_VERSION/install.sh \
   && chmod +x ./install.sh && ./install.sh && rm install.sh \
-  && . ~/.nvm/nvm.sh && nvm install 6 && nvm alias default 6 && npm install -g pm2 \
-  && git clone https://github.com/NuSkooler/enigma-bbs.git --depth 1 --branch 0.0.8-alpha \
+  && . ~/.nvm/nvm.sh && nvm install $NODE_VERSION && nvm alias default $NODE_VERSION && npm install -g pm2 \
+  && git clone https://github.com/NuSkooler/enigma-bbs.git --depth 1 --branch $ENIGMA_BRANCH \
   && cd /enigma-bbs && npm install --only=production \
   && apt-get remove build-essential python libssl-dev git curl -y && apt-get autoremove -y \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
