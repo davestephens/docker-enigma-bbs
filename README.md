@@ -12,7 +12,7 @@ Assuming that you have Docker installed, run the following command:
 ````bash
 docker run -d \
   -p 8888:8888 \
-  davestephens\enigma-bbs
+  davestephens/enigma-bbs
 ````
 
 As no config has been supplied, the container will use a basic one so that it starts successfully. ENiGMA½ listens via
@@ -61,7 +61,7 @@ for the mountable volumes - art, config, db, filebase, logs, mail and mods.
         -v ~/my_sweet_bbs/filebase:/enigma-bbs/filebase \
         -v ~/my_sweet_bbs/mods:/enigma-bbs/mods \
         -v ~/my_sweet_bbs/mail:/mail \
-        davestephens\enigma-bbs
+        davestephens/enigma-bbs
     ````
 
 ## Volumes
