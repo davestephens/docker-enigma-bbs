@@ -1,0 +1,9 @@
+version: "3"
+services:
+
+  bbs:
+    image: davestephens/enigma-bbs
+    ports:
+      - "8888:8888"
+    restart_policy:
+        condition: on-failure
