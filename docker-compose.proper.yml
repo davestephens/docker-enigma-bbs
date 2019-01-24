@@ -1,0 +1,18 @@
+version: "3"
+services:
+
+  bbs:
+    image: davestephens/enigma-bbs
+    ports:
+      - "8888:8888"
+    restart_policy:
+      condition: on-failure
+    volumes:
+      - ~/bbs/art:/enigma-bbs/art
+      - ~/bbs/config:/enigma-bbs/config
+      - ~/bbs/db:/enigma-bbs/db
+      - ~/bbs/filebase:/enigma-bbs/filebase
+      - ~/bbs/logs:/enigma-bbs/logs
+      - ~/bbs/filebase:/enigma-bbs/filebase
+      - ~/bbs/mods:/enigma-bbs/mods
+      - ~/bbs/mail:/mail
