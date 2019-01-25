@@ -3,8 +3,7 @@ services:
 
   bbs:
     image: davestephens/enigma-bbs
-    ports:
-      - "8888:8888"
+    network_mode: "host"
     restart_policy:
       condition: on-failure
     volumes:
