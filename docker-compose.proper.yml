@@ -4,14 +4,17 @@ services:
   bbs:
     image: davestephens/enigma-bbs
     network_mode: "host"
-    restart_policy:
-      condition: on-failure
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
     volumes:
       - ~/bbs/art:/enigma-bbs/art
       - ~/bbs/config:/enigma-bbs/config
       - ~/bbs/db:/enigma-bbs/db
       - ~/bbs/filebase:/enigma-bbs/filebase
       - ~/bbs/logs:/enigma-bbs/logs
-      - ~/bbs/filebase:/enigma-bbs/filebase
       - ~/bbs/mods:/enigma-bbs/mods
       - ~/bbs/mail:/mail
