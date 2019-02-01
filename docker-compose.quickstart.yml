@@ -5,5 +5,9 @@ services:
     image: davestephens/enigma-bbs
     ports:
       - "8888:8888"
-    restart_policy:
+    deploy:
+      restart_policy:
         condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
