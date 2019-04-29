@@ -1,11 +1,11 @@
-FROM ubuntu:16.04
+FROM ubuntu:bionic
 
 MAINTAINER Dave Stephens <dave@force9.org>
 
 ENV NVM_DIR /root/.nvm
-ENV NVM_VERSION v0.33.7
-ENV NODE_VERSION 8
-ENV ENIGMA_BRANCH 0.0.9-alpha
+ENV NODE_VERSION 10
+ENV ENIGMA_BRANCH 0.0.10-alpha
+ENV DEBIAN_FRONTEND noninteractive
 
 # Do some installing!
 RUN apt-get update && apt-get install -y \
@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
     lhasa \
     unrar-free \
     p7zip-full \
-  && curl -O https://raw.githubusercontent.com/creationix/nvm/$NVM_VERSION/install.sh \
+  && curl -O https://raw.githubusercontent.com/creationix/nvm/master/install.sh \
   && chmod +x ./install.sh && ./install.sh && rm install.sh \
   && . ~/.nvm/nvm.sh && nvm install $NODE_VERSION && nvm alias default $NODE_VERSION && npm install -g pm2 \
   && git clone https://github.com/NuSkooler/enigma-bbs.git --depth 1 --branch $ENIGMA_BRANCH \
