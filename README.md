@@ -58,7 +58,6 @@ for the mountable volumes - art, config, db, filebase, logs, mail and mods.
         -v ~/my_sweet_bbs/db:/enigma-bbs/db \
         -v ~/my_sweet_bbs/filebase:/enigma-bbs/filebase \
         -v ~/my_sweet_bbs/logs:/enigma-bbs/logs \
-        -v ~/my_sweet_bbs/filebase:/enigma-bbs/filebase \
         -v ~/my_sweet_bbs/mods:/enigma-bbs/mods \
         -v ~/my_sweet_bbs/mail:/mail \
         davestephens/enigma-bbs
